@@ -1,0 +1,492 @@
+Programming Assignment
+Parallel Circuit Resistance
+License
+This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License.
+To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/ or send a letter to
+Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+Non-legal summary in common language: You may copy and distribute this document. You may
+modify this document, and distribute the modified document. You must maintain the attribution to all
+authors of the original document and modifications thereof. Modified documents must be distributed
+under the original license. This is a ‘free’ document.
+Assignment Prompts as Living Documents
+Assignment prompts are to be considered Living Documents. You should check back frequently for
+updates and clarifications, especially just before submission deadlines.
+If anything in this prompt is unclear, contradictory, or questionable, please notify your professor
+immediately so a clarification can be given to you, and this document possibly updated. Otherwise, you
+may be responsible for incorrectly guessing.
+Abstract
+Make a hybrid program that works with IEEE 754 floating point arithmetic to calculate the resistance
+of a circuit, while measuring the exact number of clock cycles and time needed to complete the
+calculation.
+Introduction
+In this assignment, you’ll practice working with IEEE 754 floating point numbers, as well as hybrid
+function calls. Some of this program’s functionality is the same (or similar) to functions from your
+previous assignment(s). You may re-use code you have written for previous assignments.
+Last Modified: Aug 21, 2024 at 08:48:30 PM 1 of 17
+Professor Peralta
+Programming Assignment Fall 2024
+RCC; CIS/CSC-11
+Resistance of a Circuit
+This assignment will perform a calculation for a direct current circuit with multiple devices wired in
+parallel. The following diagram is an engineering schematic for four devices wired in parallel:
+1
+2+
+-
+21
+21
+21
+21
+Power
+R4
+220Ω
+R3
+220Ω
+R2
+220Ω
+220Ω
+R1
+Electrons flow from the positive terminal (red wire) to the negative terminal (black wire).
+The symbol at the far left is a power source (battery, generator, wind mill, etc). If you squint your eyes
+you’ll see a tiny red plus + sign at the top.
+A zigzag symbol represents a consuming device (light bulb, coffee maker, personal computer, clock,
+microwave oven, etc). Electrical engineers will use the generic name “resistor” for all such devices.
+The diagram above uses example resistances of 220 Ohms for each device, but your program would
+allow the user to input the resistance of each device individually.
+Electricity floods from the positive terminal of the source (say a battery) in the direction of the negative
+terminal of the source. Along the way, the electricity also flows through resistors (lights, stoves, clocks,
+etc). Each device places resistance on the current flow. We can assume the electrons try to flow with
+equal force across all resistors. The diagram shows 4 sub-circuits (resistors), but in practice the number
+of sub-circuits could be different. For this assignment, we will always assume 4 sub-circuits.
+Resistance in a circuit is measured in Ohms designated as Ω. The unicode code for Ω is 0x03A9. In
+Linux machines you can type this symbol by holding down control+shift, then entering ‘u’ followed by
+the unicode code in hex.
+The user inputs 4 resistance numbers: R1, R2, R3, and R4 . The program computes the total resistance
+according to the equation discovered by Mr. Jorge Simon Ohm. This equation defines the total
+resistance of the circuit R as follows:
+Last Modified: Aug 21, 2024 at 08:48:30 PM 2 of 17
+Professor Peralta
+Programming Assignment Fall 2024
+RCC; CIS/CSC-11
+1
+R = 1
+R1
++ 1
+R2
++ 1
+R3
++ 1
+R4
+Program Modules
+You will create several source files for this project:
+File Description
+README.md This is a Markdown file containing your student information. See the Code
+Submission Guidelines document for more details.
+Makefile This is a GNU Makefile that will help you compile, link, and execute your
+program. It should compile your program piece by piece along the tool-
+chain using multiple targets, as shown in class.
+Each source file should compile to a corresponding object file. Each object
+file should have its own target which depends on that source file. An
+additional target that depends on all the object files should do the linking of
+the final executable. Yet another target should run the program.
+See the diagram below for a visual representation of Makefile target
+dependencies.
+ohm.cpp This will be the entry point of your program (driver), which contains the
+main function. It is written in C++. It will print a welcome message, call on
+the assembly function inside resistance.asm, and print the result returned.
+Last Modified: Aug 21, 2024 at 08:48:30 PM 3 of 17
+Professor Peralta
+Programming Assignment Fall 2024
+RCC; CIS/CSC-11
+File Description
+resistance.asm This module contains an assembly function called resistance, which
+manages finding the solution. It displays a message describing what this
+program will do. It will call the remaining functions listed below, and
+eventually return a result back to the main driver function.
+This module is likely the most difficult. Before calling compute_resistance,
+the resistance module will make note of the current count of CPU clock
+ticks. Then, after compute_resistance has finished, the resistance module
+will again make note of the current count of CPU clock ticks. It will then
+use those two pieces of data to determine the elapsed number of clock ticks
+that occurred while compute_resistance was executing. It will then
+determine the clock speed of the currently-executing CPU (in MHz), and
+use that in conjunction with the elapsed tick count to determine how many
+nanoseconds have passed while compute_resistance was working.
+The resistance module will then call show_resistance to print the system’s
+resistance, elapsed count of ticks, and nanoseconds to the user.
+get_resistance.c This module is fairly easy. It contains a C function who’s job is to ask the
+human to input the resistance values for each of the four circuits. It then
+returns those resistances to the caller as four doubles (IEEE 754 64-bit
+floats).
+As with previous assignments, the best way to do this is by passing double
+pointers.
+Also, this function should return a value to indicate if all inputs were valid
+floats, or not, so the resistance module can decide how to respond.
+compute_resistance.cpp This module contains the C++ function compute_resistance, which
+receives 4 doubles representing the resistances of each device. It uses Mr.
+Ohm’s formula to compute total resistance of the circuit, and returns it to
+the caller.
+If any of the inputted resistances are equal to or less than zero, return 0.0
+without trying to compute the formula.
+Notice this is a C++ module, which should be significantly easier to
+compute with than an assembly module.
+show_resistance.cpp This module contains the C++ function show_resistance, which will output
+the information we were seeking.
+Last Modified: Aug 21, 2024 at 08:48:30 PM 4 of 17
+Professor Peralta
+Programming Assignment Fall 2024
+RCC; CIS/CSC-11
+As with previous assignments, you will be using 64-bit IEEE 754 floating point numbers.
+Module Diagram
+The following diagram might help you understand the arrangement of the source files a bit more:
+Executable Name
+Unless otherwise specified, the executable you generate should be named main for this and all future
+assignments.
+Makefile Behavior
+When invoking the default target (i.e., the user types “make” with no arguments), your Makefile should
+compile and link your program and produce the executable.
+You should leverage the power of Makefile dependencies such that multiple calls to the default target
+will recompile only the modules that need to be recompiled (based on source code modification), and
+relink your program only if it does not exist or one of the modules has changed.
+Last Modified: Aug 21, 2024 at 08:48:30 PM 5 of 17
+Professor Peralta
+Programming Assignment Fall 2024
+RCC; CIS/CSC-11
+The default target should not run your program, but merely compile + link (as applicable).
+Example Runs
+The easiest way to describe this program is probably with sample output.
+You should study the following examples until your own program can produce identical output. Each
+module in your program has a different job, so may produce different output (or request input). The
+examples below will have each module’s output labeled as such:
+Module Code
+ohm OHM
+resistance RES
+get_resistance GET
+compute_resistance COMP
+show_resistance SHOW
+Notes:
+• compute_resistance doesn’t print anything.
+• get_resistance shows strings printed by the program as well as the user’s input.
+• The CPU frequency of your own computer may not match the examples below. What’s
+important is your program correctly identifies the frequency, or uses the correct default value
+when your CPU isn’t capable of reporting its frequency.
+Example 1
+(run on a newer CPU that can report its clock frequency)
+Output Module
+Welcome to Parallel Circuits by Parsley Montana.
+This program will automate finding the resistance in a large circuit.
+OHM
+Found CPU frequency (MHz): 2200 RES
+Last Modified: Aug 21, 2024 at 08:48:30 PM 6 of 17
+Professor Peralta
+Programming Assignment Fall 2024
+RCC; CIS/CSC-11
+Output Module
+Please enter the resistance for each of the 4 devices.
+Enter the resistance for device 1 (Ohms): 3
+You entered: 3.000000
+Enter the resistance for device 2 (Ohms): 4
+You entered: 4.000000
+Enter the resistance for device 3 (Ohms): 5
+You entered: 5.000000
+Enter the resistance for device 4 (Ohms): 6
+You entered: 6.000000
+GET
+Input successfully received. RES
+The total resistance of the system is 1.0526315789 Ohms, which required
+350 ticks (159.0909090909ns) to complete.
+SHOW
+Returning the resistance of the system to the driver. RES
+Main received this number: 1.0526315789
+Main will now return 0 to the operating system.
+OHM
+Example 2
+(run on an older CPU that cannot report its clock frequency)
+Output Module
+Welcome to Parallel Circuits by Parsley Montana.
+This program will automate finding the resistance in a large circuit.
+OHM
+Unable to find CPU frequency (MHz); Using default value: 3400 RES
+Please enter the resistance for each of the 4 devices.
+Enter the resistance for device 1 (Ohms): 128764.0
+You entered: 128764.000000
+GET
+Last Modified: Aug 21, 2024 at 08:48:30 PM 7 of 17
+Professor Peralta
+Programming Assignment Fall 2024
+RCC; CIS/CSC-11
+Output Module
+Enter the resistance for device 2 (Ohms): 29938.0
+You entered: 29938.000000
+Enter the resistance for device 3 (Ohms): 1287
+You entered: 1287.000000
+Enter the resistance for device 4 (Ohms): 2828197.41247865
+You entered: 2828197.412479
+Input successfully received. RES
+The total resistance of the system is 1221.7129623138 Ohms, which
+required 2058 ticks (605.2941176471ns) to complete.
+SHOW
+Returning the resistance of the system to the driver. RES
+Main received this number: 1221.7129623138
+Main will now return 0 to the operating system.
+OHM
+Example 3
+(user enters a blank line during input)
+Output Module
+Welcome to Parallel Circuits by Parsley Montana.
+This program will automate finding the resistance in a large circuit.
+OHM
+Found CPU frequency (MHz): 2200 RES
+Please enter the resistance for each of the 4 devices.
+Enter the resistance for device 1 (Ohms): 1.0
+You entered: 1.000000
+Enter the resistance for device 2 (Ohms):
+GET
+You have entered nonsense; Returning 0.0 to the driver! RES
+Last Modified: Aug 21, 2024 at 08:48:30 PM 8 of 17
+Professor Peralta
+Programming Assignment Fall 2024
+RCC; CIS/CSC-11
+Output Module
+Main received this number: 0.0000000000
+Main will now return 0 to the operating system.
+OHM
+Example 4
+(user enters an invalid input)
+Output Module
+Welcome to Parallel Circuits by Parsley Montana.
+This program will automate finding the resistance in a large circuit.
+OHM
+Found CPU frequency (MHz): 2200 RES
+Please enter the resistance for each of the 4 devices.
+Enter the resistance for device 1 (Ohms): 128764.0
+You entered: 128764.0
+Enter the resistance for device 2 (Ohms): GARY
+GET
+You have entered nonsense; Returning 0.0 to the driver! RES
+Main received this number: 0.0000000000
+Main will now return 0 to the operating system.
+OHM
+Example 5
+(user enters one or more numbers that are equal to or less than zero)
+Output Module
+Welcome to Parallel Circuits by Parsley Montana.
+This program will automate finding the resistance in a large circuit.
+OHM
+Found CPU frequency (MHz): 2200 RES
+Please enter the resistance for each of the 4 devices. GET
+Last Modified: Aug 21, 2024 at 08:48:30 PM 9 of 17
+Professor Peralta
+Programming Assignment Fall 2024
+RCC; CIS/CSC-11
+Output Module
+Enter the resistance for device 1 (Ohms): -1
+You entered: -1.000000
+Enter the resistance for device 2 (Ohms): -2
+You entered: -2.000000
+Enter the resistance for device 3 (Ohms): -3
+You entered: -3.000000
+Enter the resistance for device 4 (Ohms): -4
+You entered: -4.000000
+Input successfully received. RES
+The total resistance of the system is 0.0000000000 Ohms, which required
+782 ticks (230.0000000000ns) to complete.
+SHOW
+Returning the resistance of the system to the driver. RES
+Main received this number: 0.0000000000
+Main will now return 0 to the operating system.
+OHM
+Special Issues
+This section contains instructions for special issues for which you should account.
+Floating Point Precision
+When you are using C++ to print floating point numbers, make sure to use fixed precision with 10
+numbers printed after the decimal point.
+For example, a properly formatted value of 10 would actually look like the following:
+• 10.0000000000
+You don’t need to worry about precision when echoing the user’s input back to them, as in
+get_resistance.c, nor when announcing invalid input (0.0 is fine).
+Last Modified: Aug 21, 2024 at 08:48:30 PM 10 of 17
+Professor Peralta
+Programming Assignment Fall 2024
+RCC; CIS/CSC-11
+Determining Elapsed Time
+You can determine elapsed time using only the clock speed and elapsed ticks, using the following
+formula:
+ElapsedSeconds= Ticks
+Cycles per Second
+Cycles per Second means the same thing as the CPU’s clock speed, or the CPU’s frequency, or the
+number of clock ticks per second.
+For example, suppose your clock speed is 2.2GHz and 781 ticks have passed during some calculation.
+Your assembly module would report a clock speed of 2200MHz. You might think of the right side of
+the above equation like so:
+781 ticks
+2.2 GHz = 781 ticks
+2200 MHz = 781 ticks
+2200000000 Hz
+Also note that a “Hz” just means “cycles per second” or “ticks per second”:
+Hz= tick
+second
+With that in mind, you can calculate the elapsed time as:
+Last Modified: Aug 21, 2024 at 08:48:30 PM 11 of 17
+Professor Peralta
+Programming Assignment Fall 2024
+RCC; CIS/CSC-11
+Elapseds =
+781ticks
+2200 MHz = 781 ticks
+2200000000 Hz
+= 781 ticks
+2200000000∗ tick
+second
+= 781ticks
+2200000000∗ second
+tick
+= 781
+2200000000∗ second
+1 = 781
+2200000000 seconds
+= 0.000000355 seconds
+From there, you would convert seconds to nanoseconds using the table here: SI prefixes.
+Determining Clock Speed
+There is a special instruction cpuid (c p u i d) that allows you to ask the CPU various questions about
+itself. For the purposes of this assignment, the two important questions are:
+Question Function ID Output Register
+What is the maximum question ID (aka function ID) you
+support?
+0x00 eax
+What is your clock speed, in Mhz? 0x16 eax
+Before calling the cpuid instruction, you must load your question’s function ID into the eax register.
+For both questions we want to ask for this assignment, the answer is returned in the same register, eax.
+Last Modified: Aug 21, 2024 at 08:48:30 PM 12 of 17
+Professor Peralta
+Programming Assignment Fall 2024
+RCC; CIS/CSC-11
+In other words, load a function ID into eax, then execute the cpuid instruction by itself, then look for
+the answer in eax.
+The first thing you’ll want to know is whether the CPU is able to tell you its clock speed. You can find
+that out by asking for the maximum supported function ID of cpuid. If the maximum supported
+function ID is less than the function ID needed to ask for the clock speed, the CPU isn’t able to tell you
+its clock speed. In other words, you first use ID 0x00 to ask for the maximum available ID, then use the
+0x16 ID only if it is supported.
+If the CPU is able to tell you about its clock speed, your program should announce the CPU’s clock
+speed and use it for the appropriate calculations. Otherwise, your program should complain about
+having to use a fallback value. In this case, the fallback value we’ll use is 3.4 GHz (aka 3,400Mhz aka
+3,400,000,000Hz).
+Types of Machines Used For Grading
+Many older/old-ish CPUs aren’t able to tell you their clock speed from the cpuid instruction. It’s
+possible that your own computer might lack that functionality. Your program will be manually checked
+on two types of CPUs:
+1. A CPU that is capable of reporting its clock speed from the cpuid instruction
+2. A CPU that is not capable of reporting its clock speed from the cpuid instruction
+This means you should test your program on both types of CPUs!
+If you’re wondering how you’ll possibly get your hands on both types of computers that also run
+Linux, fear not! It’s usually possible to boot a regular Windows machine to a Linux “Live CD” image
+written to a spare usb thumb drive, and run Linux on that machine just long enough to test your
+program. Please see the following link for more information on creating and using a “Live CD”:
+• https://help.ubuntu.com/community/LiveCD
+(hint: The “CD” part is just an expression. In the modern computing era, CD’s are almost never
+actually used)
+Note also, some hypervisors might prevent your CPU from reporting its clock speed. In other words,
+your newer/newish machine might be able to report its CPU clock speed, but only when running the
+program on the host (not a virtual machine).
+Last Modified: Aug 21, 2024 at 08:48:30 PM 13 of 17
+Professor Peralta
+Programming Assignment Fall 2024
+RCC; CIS/CSC-11
+Determining Elapsed Ticks
+There is another special instruction rdtsc that grabs the current cpu tick count (number of clock cycles
+that have occurred). The instruction is called without arguments, and will grab the tick count as a 64-bit
+register split across two 32-bit registers, edx:eax. This means the lowest 32-bits of rdx contain the
+highest 32-bits of the clock count, while the lowest 32-bits of rax contain the lowest 32-bits of the clock
+count. You must somehow figure out a way to convert edx:eax into a normal 64-bit register before you
+can use the tick count. Here is one recommended strategy:
+1. Initialize both rax and rdx to 0, so there are no leftover junk bits in either of them.
+2. Call the rdtsc instruction to get the cpu tick count into edx:eax.
+3. Shift the rdx register 32 bits to the left (logical, not arithmetic), so the highest 32-bits of rdx
+then contain the highest 32-bits of the tick count.
+4. Apply a bitwise OR operation between rax and rdx, and store the result into a 64-bit register.
+5. The result of the previous step should now contain the clock tick count, represented as a single
+64-bit register, which you can easily use as you please.
+Hints and Tips
+This section contains (hopefully) useful information.
+Debugging Elapsed Time (Optional!)
+It may be useful to make an upgrade to your program that allows you to override the CPU frequency
+used for calculations, and introduce an artificial delay. Your instructor did this when writing the
+solution to make things a bit easier while working on the timing equations.
+This suggestion is totally optional, but it will probably save you some frustration in the end.
+Important!
+If you choose to add this upgrade, make sure your program
+still runs correctly (per above examples) when no command
+line arguments are passed.
+Last Modified: Aug 21, 2024 at 08:48:30 PM 14 of 17
+Professor Peralta
+Programming Assignment Fall 2024
+RCC; CIS/CSC-11
+Command Line Overrides
+Recall you can send command line arguments into a program, like so:
+./main 3400 1
+In the above command, suppose you decided the first argument would be an override for the CPU
+frequency, and the second argument would control an artificial delay (in seconds) introduced into
+compute_resistance. Together, these two upgrades could make it easier to debug the timing math on a
+computer that wasn’t able to report its CPU frequency.
+For example, in the above command you may know your old old CPU has a clock speed of 3.4GHz,
+which translates to 3400MHz. You also want to introduce a 1 second delay. You could then expect your
+program to report an execution time of roughly 1,000,000,000 nanoseconds (give or take a few
+hundred). It is easier to look for a billion nanoseconds on the screen rather than manually calculating
+the ticks and timings while you debug. Thus, debugging your program becomes easier.
+Processing Command Line Arguments
+Recall that the first (3400) and second (1) command line arguments will show up in your C++ driver as
+cstrings inside argv[1] and argv[2]. You can check the value of argc to decide if the user has entered no
+arguments (in which case the program should run normally), or if the user has entered 2 arguments (in
+which case it can use the overrides provided). You can then use the C function atol to convert each
+string argument to a long integer. From there, it’s easy to pass your overrides as arguments to the
+resistance function (using the ABI), which would in turn pass the delay argument into
+compute_resistance (using the ABI).
+You’d only have to add a little more conditional branching to the resistance function so it could allow
+an override of the CPU frequency (i.e., it would use the command line argument value rather than
+checking the CPU). You could also start with a default “delay” value of 0 in the main driver, which
+only gets overridden when a corresponding command line argument is present. That way, your artificial
+delay code always executes, but it executes a delay of 0 seconds when the program is run normally.
+Artificial Delay
+Adding an artificial delay inside a C++ module is a piece of cake. You simply include a couple headers
+and call on an appropriate function. Here’s an example:
+#include <chrono>
+Last Modified: Aug 21, 2024 at 08:48:30 PM 15 of 17
+Professor Peralta
+Programming Assignment Fall 2024
+RCC; CIS/CSC-11
+#include <thread>
+void test_delay(long delay_seconds)
+{
+std::this_thread::sleep_for(std::chrono::seconds(delay_seconds));
+}
+Precise Nanoseconds
+You may have noticed by now that the CPU’s frequency and tick count are integers, but the number of
+nanoseconds is displayed as a floating point number. This means you’ll need to convert the frequency
+and ticks to floats before trying to divide!
+Functional Thinking
+If you are still uncomfortable with assembly, this assignment may seem daunting. But remember that
+functions are here to save you from drowning in a sea of confusing, repetitive, and spaghetti-like code.
+Writing the entirety of your resistance module as one single function would be unnecessarily difficult,
+even for your professor. Instead, try to imagine logical tasks that your resistance module needs to
+perform, and write them as functions instead. We’re already using this basic concept by breaking our
+program up into hybrid modules in the first place! You can take it a step further and break up complex
+modules into multiple functions.
+You can add as many functions as you want inside each module; The only requirements are that the
+specific functions named in the modules diagram are accessible by the other modules, and that you use
+The ABI to communicate between functions.
+For example, you might think of the following tasks:
+• Ask the CPU for its frequency (clock speed)
+• Setup pointers for the get_resistance module, call it, then check its result and respond to the user
+• Grab the current clock tick count and store it somewhere
+• Decide how many clock ticks have passed since compute_resistance was called
+• Use the CPU frequency and elapsed tick count to compute elapsed nanoseconds
+• etc
+You may not want to place all of these tasks into dedicated functions, but you probably can. You may
+even think of more tasks not written above, that could also become functions.
+Last Modified: Aug 21, 2024 at 08:48:30 PM 16 of 17
+Professor Peralta
+Programming Assignment Fall 2024
+RCC; CIS/CSC-11
+Remember that functions cost just a little more time to write (in order to adhere to The ABI), but
+ultimately lower the complexity of your code while improving its readability, making your life much
+easier in the process.
