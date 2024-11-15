@@ -13,6 +13,7 @@ section .text
 global resistance
 extern get_resistance
 extern compute_resistance
+extern compute_resistance_dynamic
 extern show_resistance
 extern printf
 extern free
@@ -77,7 +78,7 @@ freq_found:
     mov rdi, [rbp-32]  ; resistances array
     mov esi, [rbp-36]  ; count
     movsd xmm0, [rel default_voltage] ; default voltage 120.0V
-    call compute_resistance
+    call compute_resistance_dynamic
     mov [rbp-48], rax  ; Save CircuitResults pointer
 
     ; Get end time

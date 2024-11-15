@@ -28,7 +28,7 @@ double compute_resistance(double r1, double r2, double r3, double r4, long delay
     return 1.0/sum;
 }
 
-extern "C" CircuitResults* compute_resistance(double* resistances, int count, double voltage = 120.0) {
+extern "C" CircuitResults* compute_resistance_dynamic(double* resistances, int count, double voltage = 120.0) {
     // Check for invalid inputs
     if (!resistances || count <= 0) {
         return nullptr;

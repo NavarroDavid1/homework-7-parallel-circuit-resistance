@@ -7,6 +7,10 @@ LDFLAGS=-no-pie
 
 OBJECTS=ohm.o resistance.o get_resistance.o compute_resistance.o show_resistance.o
 
+# Default target is now 'build'
+.PHONY: build
+build: main
+
 main: $(OBJECTS)
 	$(CXX) $(LDFLAGS) -o main $(OBJECTS) 
 
