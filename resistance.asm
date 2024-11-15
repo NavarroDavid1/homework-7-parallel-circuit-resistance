@@ -90,10 +90,14 @@ freq_found:
     or rax, rdx
     sub rax, [rbp-16]  ; Calculate elapsed ticks
 
-    ; Show results
+    ; Show results with visualization
     movq xmm0, [rbp-56]  ; resistance
     cvtsi2sd xmm1, rax   ; ticks
     movsd xmm2, [rbp-8]  ; frequency
+    movsd xmm3, [rbp-48] ; r1
+    movsd xmm4, [rbp-40] ; r2
+    movsd xmm5, [rbp-32] ; r3
+    movsd xmm6, [rbp-24] ; r4
     call show_resistance
 
     mov rdi, return_msg
