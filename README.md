@@ -1,20 +1,20 @@
-# Parallel Circuit Resistance Calculator
+# Programming Assignment - Parallel Circuit Resistance
 
-Student Name: [Your name]
-Student ID: [Your ID]
-Class: CIS/CSC-11
-Assignment: Parallel Circuit Resistance Calculator
 
-## Program Description
-This program calculates the total resistance of 4 parallel circuits using IEEE 754 floating-point arithmetic. 
-It measures the exact number of clock cycles and time needed to complete the calculation.
+# My Information
+* Name: David Navarro
+* CWID: 1234567890
+* Email: dnavarro51@student.rccd.edu
 
-## Files
-- ohm.cpp: Main driver program
-- resistance.asm: Assembly module for timing and coordination
-- get_resistance.c: Input handling module
-- compute_resistance.cpp: Resistance calculation module
-- show_resistance.cpp: Results display module
-- Makefile: Build automation file
 
-## How to Build
+# Project Overview
+This project is designed to handle array manipulation using C, C++, and assembly. The program allows the user to input integers, stores them in an array on the stack, displays the array, reverses it using a C++ function, and calculates the mean using assembly.
+
+
+# Compilation and Execution
+To compile and run the program:
+1. Run `make` to compile the project.
+2. Run `./main` to execute the program.
+
+The Makefile ensures that the program is properly compiled and linked using GCC and NASM. The reverse function is written in C++, while array display and input/output are managed in assembly.
+
