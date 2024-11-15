@@ -3,24 +3,36 @@
 #include <string>
 #include <sstream>
 
-void draw_circuit(double r1, double r2, double r3, double r4) {
+void draw_circuit(double* resistances, int count) {
     std::cout << "\nCircuit Visualization:\n";
-    std::cout << "┌────[+]────┬──────╱╱╱╱──(" << std::fixed << std::setprecision(1) << r1 << "Ω)──┬────┐\n";
+    
+    // Top line with first resistor
+    std::cout << "┌────[+]────┬";
+    std::cout << "──────╱╱╱╱──(" << std::fixed << std::setprecision(1) 
+              << resistances[0] << "Ω)──┬────┐\n";
+              
+    // Middle lines with remaining resistors except last
+    for (int i = 1; i < count - 1; i++) {
+        std::cout << "│          │                    │    │\n";
+        std::cout << "│          ├──────╱╱╱╱──(" 
+                  << resistances[i] << "Ω)──┤    │\n";
+        if (i == count/2 - 1) {
+            std::cout << "[PWR]      │                    │    │\n";
+        }
+    }
+    
+    // Bottom line with last resistor
     std::cout << "│          │                    │    │\n";
-    std::cout << "│          ├──────╱╱╱╱──(" << r2 << "Ω)──┤    │\n";
-    std::cout << "[PWR]      │                    │    │\n";
-    std::cout << "│          ├──────╱╱╱╱──(" << r3 << "Ω)──┤    │\n";
-    std::cout << "│          │                    │    │\n";
-    std::cout << "└────[-]────┴──────╱╱╱╱──(" << r4 << "Ω)──┴────┘\n\n";
+    std::cout << "└────[-]────┴──────╱╱╱╱──(" 
+              << resistances[count-1] << "Ω)──┴────┘\n\n";
 }
 
 extern "C" void show_resistance(double resistance, double ticks, double cpu_freq_mhz, 
-                              double r1, double r2, double r3, double r4) {
+                              double* resistances, int count) {
     // Draw circuit visualization
-    draw_circuit(r1, r2, r3, r4);
+    draw_circuit(resistances, count);
     
     // Calculate elapsed time in nanoseconds
-    // nanoseconds = (ticks / (freq_mhz * 1,000,000)) * 1,000,000,000
     double elapsed_ns = (ticks / (cpu_freq_mhz * 1000000.0)) * 1000000000.0;
 
     std::cout << std::fixed << std::setprecision(10);

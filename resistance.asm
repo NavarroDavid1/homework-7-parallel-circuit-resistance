@@ -15,6 +15,7 @@ extern get_resistance
 extern compute_resistance
 extern show_resistance
 extern printf
+extern free
 
 resistance:
     push rbp
@@ -61,11 +62,9 @@ freq_found:
     or rax, rdx
     mov [rbp-16], rax  ; Store start time
 
-    ; Get resistances
-    lea rdi, [rbp-48]  ; R1
-    lea rsi, [rbp-40]  ; R2
-    lea rdx, [rbp-32]  ; R3
-    lea rcx, [rbp-24]  ; R4
+    ; Get resistances - new dynamic version
+    lea rdi, [rbp-32]  ; resistances array pointer
+    lea rsi, [rbp-36]  ; count
     call get_resistance
     test eax, eax
     jz invalid_input
@@ -75,14 +74,10 @@ freq_found:
     call printf
 
     ; Calculate resistance
-    movsd xmm0, [rbp-48]
-    movsd xmm1, [rbp-40]
-    movsd xmm2, [rbp-32]
-    movsd xmm3, [rbp-24]
+    mov rdi, [rbp-32]  ; resistances array
+    mov esi, [rbp-36]  ; count
     call compute_resistance
-
-    ; Save result
-    movq [rbp-56], xmm0
+    movq [rbp-48], xmm0  ; Save result
 
     ; Get end time
     rdtsc
@@ -91,20 +86,22 @@ freq_found:
     sub rax, [rbp-16]  ; Calculate elapsed ticks
 
     ; Show results with visualization
-    movq xmm0, [rbp-56]  ; resistance
+    movq xmm0, [rbp-48]  ; resistance
     cvtsi2sd xmm1, rax   ; ticks
     movsd xmm2, [rbp-8]  ; frequency
-    movsd xmm3, [rbp-48] ; r1
-    movsd xmm4, [rbp-40] ; r2
-    movsd xmm5, [rbp-32] ; r3
-    movsd xmm6, [rbp-24] ; r4
+    mov rdi, [rbp-32]    ; resistances array
+    mov esi, [rbp-36]    ; count
     call show_resistance
 
     mov rdi, return_msg
     xor eax, eax
     call printf
 
-    movq xmm0, [rbp-56]  ; Return resistance
+    ; Free allocated memory
+    mov rdi, [rbp-32]
+    call free
+
+    movq xmm0, [rbp-48]  ; Return resistance
     jmp done
 
 invalid_input:
