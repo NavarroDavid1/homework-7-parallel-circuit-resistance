@@ -1,3 +1,7 @@
+# Build target must be first for Gradescope compatibility
+.PHONY: build
+build: main
+
 CXX=g++
 CC=gcc
 ASM=nasm
@@ -6,10 +10,6 @@ ASMFLAGS=-f elf64
 LDFLAGS=-no-pie
 
 OBJECTS=ohm.o resistance.o get_resistance.o compute_resistance.o show_resistance.o
-
-# Default target is now 'build'
-.PHONY: build
-build: main
 
 main: $(OBJECTS)
 	$(CXX) $(LDFLAGS) -o main $(OBJECTS) 
