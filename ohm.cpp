@@ -1,9 +1,7 @@
 #include <iostream>
 #include <iomanip>
 
-extern "C" {
-    double resistance();
-}
+extern "C" { double resistance(); }
 
 int main() {
     std::cout << "Welcome to Parallel Circuits by Circuit Calculator.\n";

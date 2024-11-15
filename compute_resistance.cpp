@@ -8,6 +8,26 @@ struct CircuitResults {
     double total_current;
 };
 
+extern "C" { double compute_resistance(double r1, double r2, double r3, double r4, long delay_seconds); }
+
+double compute_resistance(double r1, double r2, double r3, double r4, long delay_seconds) {
+    // Check for invalid inputs
+    if (r1 <= 0 || r2 <= 0 || r3 <= 0 || r4 <= 0) {
+        return 0.0;
+    }
+
+    // Calculate parallel resistance: 1/R = sum(1/Ri)
+    double sum = (1.0/r1) + (1.0/r2) + (1.0/r3) + (1.0/r4);
+    
+    // Add artificial delay if requested
+    for (long i = 0; i < delay_seconds * 1000000; i++) {
+        asm volatile("nop");
+    }
+    
+    // Return total resistance
+    return 1.0/sum;
+}
+
 extern "C" CircuitResults* compute_resistance(double* resistances, int count, double voltage = 120.0) {
     // Check for invalid inputs
     if (!resistances || count <= 0) {
