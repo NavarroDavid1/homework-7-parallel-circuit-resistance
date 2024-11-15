@@ -8,7 +8,12 @@
 
 
 # Project Overview
-This project is designed to handle array manipulation using C, C++, and assembly. The program allows the user to input integers, stores them in an array on the stack, displays the array, reverses it using a C++ function, and calculates the mean using assembly.
+This project implements a parallel circuit resistance calculator using a hybrid approach of C++, C, and Assembly. The program calculates resistance, current, and power metrics for n-resistor configurations, featuring:
+- Dynamic memory allocation for variable resistor counts
+- IEEE 754 floating-point calculations
+- CPU cycle-level timing measurements
+- ASCII circuit visualization with current flow
+- Comprehensive power and resistance metrics
 
 
 # Compilation and Execution
@@ -16,5 +21,4 @@ To compile and run the program:
 1. Run `make` to compile the project.
 2. Run `./main` to execute the program.
 
-The Makefile ensures that the program is properly compiled and linked using GCC and NASM. The reverse function is written in C++, while array display and input/output are managed in assembly.
-
+The Makefile ensures proper compilation and linking using GCC, G++, and NASM for the hybrid implementation.
