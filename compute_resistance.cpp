@@ -1,18 +1,51 @@
-extern "C" double compute_resistance(double* resistances, int count) {
+#include <cmath>
+
+struct CircuitResults {
+    double total_resistance;
+    double* currents;
+    double* powers;
+    double total_power;
+    double total_current;
+};
+
+extern "C" CircuitResults* compute_resistance(double* resistances, int count, double voltage = 120.0) {
     // Check for invalid inputs
     if (!resistances || count <= 0) {
-        return 0.0;
+        return nullptr;
     }
+
+    CircuitResults* results = new CircuitResults;
+    results->currents = new double[count];
+    results->powers = new double[count];
 
     // Calculate parallel resistance: 1/R = sum(1/Ri)
     double sum = 0.0;
     for (int i = 0; i < count; i++) {
         if (resistances[i] <= 0) {
-            return 0.0;
+            delete[] results->currents;
+            delete[] results->powers;
+            delete results;
+            return nullptr;
         }
         sum += 1.0/resistances[i];
     }
     
-    // Return total resistance
-    return 1.0/sum;
+    // Calculate total resistance
+    results->total_resistance = 1.0/sum;
+    
+    // Calculate individual currents and powers
+    results->total_current = 0.0;
+    results->total_power = 0.0;
+    
+    for (int i = 0; i < count; i++) {
+        // Current through each resistor (I = V/R)
+        results->currents[i] = voltage/resistances[i];
+        results->total_current += results->currents[i];
+        
+        // Power dissipated by each resistor (P = V²/R)
+        results->powers[i] = (voltage * voltage)/resistances[i];
+        results->total_power += results->powers[i];
+    }
+
+    return results;
 }

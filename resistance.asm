@@ -20,7 +20,7 @@ extern free
 resistance:
     push rbp
     mov rbp, rsp
-    sub rsp, 64  ; Reserve stack space
+    sub rsp, 80  ; Reserve stack space
 
     ; Check CPU frequency
     mov eax, 0x0  ; Get max function ID
@@ -76,8 +76,9 @@ freq_found:
     ; Calculate resistance
     mov rdi, [rbp-32]  ; resistances array
     mov esi, [rbp-36]  ; count
+    movsd xmm0, [rel default_voltage] ; default voltage 120.0V
     call compute_resistance
-    movq [rbp-48], xmm0  ; Save result
+    mov [rbp-48], rax  ; Save CircuitResults pointer
 
     ; Get end time
     rdtsc
@@ -86,22 +87,31 @@ freq_found:
     sub rax, [rbp-16]  ; Calculate elapsed ticks
 
     ; Show results with visualization
-    movq xmm0, [rbp-48]  ; resistance
-    cvtsi2sd xmm1, rax   ; ticks
-    movsd xmm2, [rbp-8]  ; frequency
-    mov rdi, [rbp-32]    ; resistances array
-    mov esi, [rbp-36]    ; count
+    mov rdi, [rbp-48]  ; CircuitResults pointer
+    cvtsi2sd xmm0, rax   ; ticks
+    movsd xmm1, [rbp-8]  ; frequency
+    mov rsi, [rbp-32]    ; resistances array
+    mov edx, [rbp-36]    ; count
     call show_resistance
 
     mov rdi, return_msg
     xor eax, eax
     call printf
 
-    ; Free allocated memory
-    mov rdi, [rbp-32]
+    ; Get total resistance from CircuitResults
+    mov rax, [rbp-48]
+    movsd xmm0, [rax]  ; Load total_resistance
+
+    ; Cleanup
+    mov rdi, [rax+8]   ; Free currents array
+    call free
+    mov rdi, [rax+16]  ; Free powers array
+    call free
+    mov rdi, rax       ; Free CircuitResults struct
+    call free
+    mov rdi, [rbp-32]  ; Free resistances array
     call free
 
-    movq xmm0, [rbp-48]  ; Return resistance
     jmp done
 
 invalid_input:
@@ -113,3 +123,6 @@ invalid_input:
 done:
     leave
     ret
+
+section .data
+    default_voltage: dq 120.0  ; Default voltage for the circuit
