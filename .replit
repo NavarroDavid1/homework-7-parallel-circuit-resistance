@@ -23,6 +23,10 @@ args = "Circuit Calculator"
 task = "workflow.run"
 args = "Build Circuit Calculator"
 
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Build Test"
+
 [[workflows.workflow]]
 name = "Build and Run Circuit Calculator"
 author = "agent"
@@ -64,6 +68,20 @@ task = "packager.installForAll"
 [[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "make clean && make build && ls -l main"
+
+[[workflows.workflow]]
+name = "Build Test"
+author = "agent"
+
+[workflows.workflow.metadata]
+agentRequireRestartOnSave = false
+
+[[workflows.workflow.tasks]]
+task = "packager.installForAll"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "make clean && make build"
 
 [deployment]
 run = ["sh", "-c", "make && ./main"]

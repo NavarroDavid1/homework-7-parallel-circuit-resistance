@@ -1,0 +1,243 @@
+Autograder Output
+[Base::run_autograder] Enter base run_autograder
+[Base::run_autograder] Relative path is: /autograder/source/base/run_autograder
+[Base::run_autograder] Absolute path is: /autograder/source/base/run_autograder
+[Base::run_autograder] Base repo's directory name is: base
+[Base::run_autograder] Environment is:
+PYENV_SHELL=bash
+AWS_EXECUTION_ENV=AWS_ECS_EC2
+HOSTNAME=68d7e07d0133
+SUBMIT_RESULTS_URL=https://www.gradescope.com/api/v1/courses/819810/programming_assignments/4782199/submissions/289431888/submit_results
+PWD=/autograder
+ECS_CONTAINER_METADATA_URI_V4=http://169.254.170.2/v4/4e88854a-f687-4497-b6d2-cf40c5a848f8
+HOME=/root
+LANG=C.UTF-8
+ASSIGNMENT_TITLE=Homework 7 - Parallel Circuit Resistance
+SSHD_TIMEOUT_WARNING_SECONDS=300
+TIMEOUT_SECONDS=600
+SUBMISSION_URL=https://www.gradescope.com/api/v1/courses/819810/programming_assignments/4782199/submissions/289431888.json
+ECS_AGENT_URI=http://169.254.170.2/api/4e88854a-f687-4497-b6d2-cf40c5a848f8
+AUTHORIZED_KEYS=
+ECS_CONTAINER_METADATA_URI=http://169.254.170.2/v3/4e88854a-f687-4497-b6d2-cf40c5a848f8
+SHLVL=3
+PYENV_ROOT=/root/.pyenv
+LC_ALL=C.UTF-8
+PATH=/root/.pyenv/shims:/root/.pyenv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+DEBIAN_FRONTEND=noninteractive
+_=/usr/bin/env
+[Base::run_autograder] Changing working directory to: /autograder/source/base
+[Base::run_autograder] Making sure correct python version for this base library is installed
+[Base::run_autograder] Setting up python environment with pipenv
+Loading .env environment variables...
+To activate this project's virtualenv, run pipenv shell.
+Alternatively, run a command inside the virtualenv with pipenv run.
+Installing dependencies from Pipfile.lock (47f280)...
+All dependencies are now up-to-date!
+[Base::run_autograder] Executing main.py
+Loading .env environment variables...
+Begin main.py
+BASE_REPO_DIR_NAME = base
+AUTOGRADER_SOURCE = /autograder/source
+AUTOGRADER_SUBMISSION = /autograder/submission
+AUTOGRADER_RESULTS = /autograder/results
+Hello from OneDirSubmissionFixer.py
+[OneDirSubmissionFixer] Single-folder submission not detected. No need to fix.
+Copying default results.json file
+[TamperProofer] __init__
+[TamperProofer] Not given a source directory; Using default: /autograder/source/tamper-proof
+[TamperProofer] Running
+[TamperProofer] Delete existing file or directory: /autograder/submission/grader.yml
+[TamperProofer] - Did not find evidence of pre-existing tamper-proof file "grader.yml"
+[TamperProofer] Copying tamper-proof file grader.yml into submission directory: "/autograder/submission/grader.yml"
+[TamperProofer] - Newly created file: /autograder/submission/grader.yml
+[TamperProofer] Finished
+[Base::run_autograder] Main python script seems to have succeeded
+rm: cannot remove '/autograder/submission/grader-output/results.json': No such file or directory
+[18:11:07][INFO] File logging enabled to: /autograder/submission/grader-output/grader.log
+[18:11:07][INFO] Logger has been initialized
+[18:11:07][WARNING] Test warning
+[18:11:07][ERROR] Test error
+[18:11:07][INFO] [Config] Config object received logger
+[18:11:07][INFO] [Config] Config training mode is disabled. Set ['general', 'training-mode'] to True to enable
+[18:11:07][INFO] Output base directory: /autograder/submission
+[18:11:07][INFO] Total estimated points possible: 44.0
+[18:11:07][INFO] Total estimated points possible (by key): {'output': 21.0, 'read-me': 6.0, 'run-program': 2.0, 'source-code': 15.0}
+[18:11:07][INFO] Not provided with a directory to scan for repos.
+[18:11:07][INFO] Found 1 individual repo directories to process.
+[18:11:07][INFO] Will attempt to execute the following repos:
+[18:11:07][INFO] > /autograder/submission
+[18:11:07][INFO] 
+[18:11:07][INFO] Processing repos
+[18:11:07][INFO] Launching 16 threads to process repo dirs
+[18:11:07][INFO] Launching thread #1 to process repo dirs
+[18:11:07][INFO] 
+[18:11:07][INFO] Launching thread #2 to process repo dirs
+[18:11:07][INFO] Processing repo dir: /autograder/submission (0 remaining)
+[18:11:07][INFO] Launching thread #3 to process repo dirs
+[18:11:07][INFO] Launching thread #4 to process repo dirs
+[18:11:07][INFO] Launching thread #5 to process repo dirs
+[18:11:07][INFO] Launching thread #6 to process repo dirs
+[18:11:07][INFO] Launching thread #7 to process repo dirs
+[18:11:07][INFO] Launching thread #8 to process repo dirs
+[18:11:07][INFO] Launching thread #9 to process repo dirs
+[18:11:07][INFO] Launching thread #10 to process repo dirs
+[18:11:07][INFO] Launching thread #11 to process repo dirs
+[18:11:07][INFO] Launching thread #12 to process repo dirs
+[18:11:07][INFO] Launching thread #13 to process repo dirs
+[18:11:07][WARNING] [RepoReport][submission] Failed to count repo commits; Submission didn't contain a valid git database
+; /autograder/submission
+[18:11:07][INFO] Launching thread #14 to process repo dirs
+[18:11:07][WARNING] [RepoReport][submission] Failed to count repo commits; Submission didn't contain a valid git database
+; /autograder/submission
+[18:11:07][INFO] Launching thread #15 to process repo dirs
+[18:11:07][INFO] 
+[18:11:07][INFO] Launching thread #16 to process repo dirs
+[18:11:07][INFO] Executing repo: submission
+[18:11:07][INFO] Waiting for all threads to finish
+[18:11:07][INFO] Repo submission; Pass 1 of 22: Compile program
+[18:11:07][INFO] RepoReport doesn't think we should continue after consuming the current execution result.
+[18:11:07][INFO] Thread #1 has been joined successfully
+[18:11:07][INFO] Thread #2 has been joined successfully
+[18:11:07][INFO] Thread #3 has been joined successfully
+[18:11:07][INFO] Thread #4 has been joined successfully
+[18:11:07][INFO] Thread #5 has been joined successfully
+[18:11:07][INFO] Thread #6 has been joined successfully
+[18:11:07][INFO] Thread #7 has been joined successfully
+[18:11:07][INFO] Thread #8 has been joined successfully
+[18:11:07][INFO] Thread #9 has been joined successfully
+[18:11:07][INFO] Thread #10 has been joined successfully
+[18:11:07][INFO] Thread #11 has been joined successfully
+[18:11:07][INFO] Thread #12 has been joined successfully
+[18:11:07][INFO] Thread #13 has been joined successfully
+[18:11:07][INFO] Thread #14 has been joined successfully
+[18:11:07][INFO] Thread #15 has been joined successfully
+[18:11:07][INFO] Thread #16 has been joined successfully
+[18:11:07][INFO] All threads joined successfully
+[18:11:07][INFO] Begin writing master report
+[18:11:07][INFO] [RepoReport][submission] 
+[18:11:07][INFO] [RepoReport][submission] ********************************************************************************
+[18:11:07][INFO] [RepoReport][submission] ********************************************************************************
+[18:11:07][INFO] [RepoReport][submission] ********************************************************************************
+[18:11:07][INFO] [RepoReport][submission] ***** Begin executing repo: submission
+[18:11:07][INFO] [RepoReport][submission] This doesn't seem to be a valid git repo. Oh well.
+[18:11:07][INFO] [RepoReport][submission] Begin rendering execution passes
+[18:11:07][INFO] [RepoReport][submission] 
+[18:11:07][INFO] [RepoReport][submission] =====> Begin Execution; index=0, reportIndex=1, total=1, Repo: "submission"
+[18:11:07][INFO] [RepoReport][submission] Command was: ['make', 'build']
+[18:11:07][INFO] [RepoReport][submission] Exit code was: 2
+[18:11:07][INFO] [RepoReport][submission] Your program needs to compile
+[18:11:07][INFO] [RepoReport][submission] WARNING: Execution failed and fail-fast was set; Execution won't continue after this pass.
+[18:11:07][INFO] [RepoReport][submission] Finished rendering execution passes
+[18:11:07][INFO] [RepoReport][submission] 
+[18:11:07][INFO] [RepoReport][submission] Rendering points
+[18:11:07][INFO] [RepoReport][submission] Compile and run the program (run-program) ===> 0.0 of 10.0 (Raw: 0.0 of 2.0)
+[18:11:07][INFO] [RepoReport][submission] > Initialize to 0.0
+[18:11:07][INFO] [RepoReport][submission] > No award for: Execution "Compile program"; Your program needs to compile (possible=1)
+[18:11:07][INFO] [RepoReport][submission] Program output (output) ===> 0.0 of 50.0 (Raw: 0.0 of 21.0)
+[18:11:07][INFO] [RepoReport][submission] > Initialize to 0.0
+[18:11:07][INFO] [RepoReport][submission] Source code (source-code) ===> 30.0 of 30.0 (Raw: 15.0 of 15.0)
+[18:11:07][INFO] [RepoReport][submission] > Initialize to 0.0
+[18:11:07][INFO] [RepoReport][submission] > Award from 0.0 to 1.0 (adjustment=1; possible=1) for: Wanted file "ohm.cpp"; Content pattern found: resistance, extern C; extern\s+"C"\s*\{\s*double\s*resistance\([^\)]*\)\s*;; ohm.cpp should recognize resistance() as an external C function
+[18:11:07][INFO] [RepoReport][submission] > Award from 1.0 to 2.0 (adjustment=1; possible=1) for: Wanted file "ohm.cpp"; Content pattern found: driver calls on resistance(); double\s+the_resistance\s*=\s*resistance\([^\)]*\);; The driver module should call on the resistance.asm module's resistance() function, and grab the return result to a 64-bit float. Name the variable the_resistance.
+[18:11:07][INFO] [RepoReport][submission] > Award from 2.0 to 3.0 (adjustment=1; possible=1) for: Wanted file "resistance.asm"; Content pattern found: Use get_resistance; (?s)section\s+\.text.+?extern\s+get_resistance.+?call\s+get_resistance; resistance.asm should utilize the external get_resistance function
+[18:11:07][INFO] [RepoReport][submission] > Award from 3.0 to 4.0 (adjustment=1; possible=1) for: Wanted file "resistance.asm"; Content pattern found: Use compute_resistance; (?s)section\s+\.text.+?extern\s+compute_resistance.+?call\s+compute_resistance; resistance.asm should utilize the external compute_resistance function
+[18:11:07][INFO] [RepoReport][submission] > Award from 4.0 to 5.0 (adjustment=1; possible=1) for: Wanted file "resistance.asm"; Content pattern found: Use show_resistance; (?s)section\s+\.text.+?extern\s+show_resistance.+?call\s+show_resistance; resistance.asm should utilize the external show_resistance function
+[18:11:07][INFO] [RepoReport][submission] > Award from 5.0 to 6.0 (adjustment=1; possible=1) for: Wanted file "resistance.asm"; Content pattern found: Make resistance available; (?m)^\s*global\s+resistance; The resistance module should make its resistance() function visible to other modules
+[18:11:07][INFO] [RepoReport][submission] > Award from 6.0 to 7.0 (adjustment=1; possible=1) for: Wanted file "resistance.asm"; Content pattern found: resistance() utilizing cpuid; (?s)(?m)section\s+\.text.+?^\s*cpuid; The resistance module should utilize the cpuid instruction
+[18:11:07][INFO] [RepoReport][submission] > Award from 7.0 to 8.0 (adjustment=1; possible=1) for: Wanted file "resistance.asm"; Content pattern found: resistance() convert int to a float; (?s)(?m)section\s+\.text.+?^\s*cvtsi2sd; The resistance module should be converting integers to floats
+[18:11:07][INFO] [RepoReport][submission] > Award from 8.0 to 9.0 (adjustment=1; possible=1) for: Wanted file "resistance.asm"; Content pattern found: resistance() grab tick count; (?s)(?m)section\s+\.text.+?^\s*rdtsc; The resistance module should grab the current CPU tick count
+[18:11:07][INFO] [RepoReport][submission] > Award from 9.0 to 10.0 (adjustment=1; possible=1) for: Wanted file "get_resistance.c"; Content pattern found: fgets and sscanf; (?s)fgets.+?sscanf; The get_sides module should use fgets and sscanf to receive user input
+[18:11:07][INFO] [RepoReport][submission] > Award from 10.0 to 11.0 (adjustment=1; possible=1) for: Wanted file "get_resistance.c"; Content pattern found: get_resistance signature; long\s+get_resistance\s*\(\s*double\s*\*\s*[a-zA-Z0-9_]+\s*,\s*double\s*\*\s*[a-zA-Z0-9_]+\s*,\s*double\s*\*\s*[a-zA-Z0-9_]+\s*,\s*double\s*\*\s*[a-zA-Z0-9_]+\s*\); The get_resistance function should have the following signature: long get_resistance(double*, double*, double*, double*);
+[18:11:07][INFO] [RepoReport][submission] > Award from 11.0 to 12.0 (adjustment=1; possible=1) for: Wanted file "compute_resistance.cpp"; Content pattern found: define and demangle compute_resistance; (?s)extern\s+"C"\s+{\s*double\s*compute_resistance\s*\(double[^,]+,\s*double[^,]+,\s*double[^,]+,\s*double; The compute_resistance module should define and demangle its C++ function compute_resistance, with the following signature: double compute_resistance(double r1, double r2, double r3, double r4, long delay_seconds);
+[18:11:07][INFO] [RepoReport][submission] > Award from 12.0 to 13.0 (adjustment=1; possible=1) for: Wanted file "show_resistance.cpp"; Content pattern found: Expose and demangle show_resistance; (?s)extern\s+"C"\s+{\s*void\s*show_resistance\s*\(double\s+[^,]+,\s*long\s+[^,]+,\s*double; The show_resistance module should expose and demangle its show_resistance function with the following signature: void show_resistance(double r, long ticks, double nanoSeconds);
+[18:11:07][INFO] [RepoReport][submission] > Award from 13.0 to 14.0 (adjustment=1; possible=1) for: Wanted file "show_resistance.cpp"; Content pattern found: show_results float precision (1); std::fixed; Use std::fixed and std::setprecision to ensure your floats print with 10 digits of precision after the decimal point
+[18:11:07][INFO] [RepoReport][submission] > Award from 14.0 to 15.0 (adjustment=1; possible=1) for: Wanted file "show_resistance.cpp"; Content pattern found: show_results float precision (2); std::setprecision\s*\([^\)]+\); Use std::fixed and std::setprecision to ensure your floats print with 10 digits of precision after the decimal point
+[18:11:07][INFO] [RepoReport][submission] README.md (read-me) ===> 10.0 of 10.0 (Raw: 6.0 of 6.0)
+[18:11:07][INFO] [RepoReport][submission] > Initialize to 0.0
+[18:11:07][INFO] [RepoReport][submission] > Award from 0.0 to 1.0 (adjustment=1; possible=1) for: Wanted file "README.md"; Content pattern found: Assignment title heading; (?m)(^|\n)# Programming Assignment - Parallel Circuit Resistance; Create a Markdown L1 heading with the title "Programming Assignment - Parallel Circuit Resistance"
+[18:11:07][INFO] [RepoReport][submission] > Award from 1.0 to 2.0 (adjustment=1; possible=1) for: Wanted file "README.md"; Content pattern found: "My Information" heading; (?m)(^|\n)# My Information; Create a Markdown L1 heading with the title "My Information"
+[18:11:07][INFO] [RepoReport][submission] > Award from 2.0 to 3.0 (adjustment=1; possible=1) for: Wanted file "README.md"; Content pattern found: Student name; \*\s+name\s*:\s*[^\s]+; Inside the "My Information" section, there should be a bullet with your name, like "name: YOUR NAME"
+[18:11:07][INFO] [RepoReport][submission] > Award from 3.0 to 4.0 (adjustment=1; possible=1) for: Wanted file "README.md"; Content pattern found: Student CWID; \*\s+CWID\s*:\s*[0-9\s]{5,15}; Inside the "My Information" section, there should be a bullet with your CWID, like "CWID: 1234567890"
+[18:11:07][INFO] [RepoReport][submission] > Award from 4.0 to 5.0 (adjustment=1; possible=1) for: Wanted file "README.md"; Content pattern found: Student email; \*\s+Email\s*:\s*.+?@.*?rccd\.edu; Inside the "My Information" section, there should be a bullet with your student email, like "Email: me@student.rccd.edu"
+[18:11:07][INFO] [RepoReport][submission] > Award from 5.0 to 6.0 (adjustment=1; possible=1) for: Wanted file: "README.md" was found
+[18:11:07][INFO] [RepoReport][submission] Normalizing final score to a max of 10.0; 21.0 / 44.0 became; 40.0 / 100.0 becomes 4.0 / 10.0
+[18:11:07][WARNING] [RepoReport][submission] Wanted file was not found: libPuhfessorP(\.v[0-9\.]+)?\.so
+[18:11:07][WARNING] [RepoReport][submission] Exit code will not earn any default points for key "run-program"
+[18:11:07][WARNING] [RepoReport][submission] No stdout detected!
+[18:11:07][WARNING] [RepoReport][submission] Detected stderr output !!!
+[18:11:07][WARNING] [RepoReport][submission] stderr: make: *** No rule to make target 'build'.  Stop.
+[18:11:08][INFO] Finished writing master report
+[18:11:08][INFO] Begin writing individual reports
+[18:11:08][INFO] Begin launching 1 threads to write individual reports
+[18:11:08][INFO] _write_individual_reports_thread() - Begin thread #1
+[18:11:08][INFO] Begin joining threads
+[18:11:08][INFO] 
+[18:11:08][INFO] (Thread #1) Begin writing report for: submission
+[18:11:08][INFO] [RepoReport][submission] 
+[18:11:08][INFO] [RepoReport][submission] ********************************************************************************
+[18:11:08][INFO] [RepoReport][submission] ********************************************************************************
+[18:11:08][INFO] [RepoReport][submission] ********************************************************************************
+[18:11:08][INFO] [RepoReport][submission] ***** Begin executing repo: submission
+[18:11:08][INFO] [RepoReport][submission] This doesn't seem to be a valid git repo. Oh well.
+[18:11:08][INFO] [RepoReport][submission] Begin rendering execution passes
+[18:11:08][INFO] [RepoReport][submission] 
+[18:11:08][INFO] [RepoReport][submission] =====> Begin Execution; index=0, reportIndex=1, total=1, Repo: "submission"
+[18:11:08][INFO] [RepoReport][submission] Command was: ['make', 'build']
+[18:11:08][INFO] [RepoReport][submission] Exit code was: 2
+[18:11:08][INFO] [RepoReport][submission] Your program needs to compile
+[18:11:08][INFO] [RepoReport][submission] WARNING: Execution failed and fail-fast was set; Execution won't continue after this pass.
+[18:11:08][INFO] [RepoReport][submission] Finished rendering execution passes
+[18:11:08][INFO] [RepoReport][submission] 
+[18:11:08][INFO] [RepoReport][submission] Rendering points
+[18:11:08][INFO] [RepoReport][submission] Compile and run the program (run-program) ===> 0.0 of 10.0 (Raw: 0.0 of 2.0)
+[18:11:08][INFO] [RepoReport][submission] > Initialize to 0.0
+[18:11:08][INFO] [RepoReport][submission] > No award for: Execution "Compile program"; Your program needs to compile (possible=1)
+[18:11:08][INFO] [RepoReport][submission] Program output (output) ===> 0.0 of 50.0 (Raw: 0.0 of 21.0)
+[18:11:08][INFO] [RepoReport][submission] > Initialize to 0.0
+[18:11:08][INFO] [RepoReport][submission] Source code (source-code) ===> 30.0 of 30.0 (Raw: 15.0 of 15.0)
+[18:11:08][INFO] [RepoReport][submission] > Initialize to 0.0
+[18:11:08][INFO] [RepoReport][submission] > Award from 0.0 to 1.0 (adjustment=1; possible=1) for: Wanted file "ohm.cpp"; Content pattern found: resistance, extern C; extern\s+"C"\s*\{\s*double\s*resistance\([^\)]*\)\s*;; ohm.cpp should recognize resistance() as an external C function
+[18:11:08][INFO] [RepoReport][submission] > Award from 1.0 to 2.0 (adjustment=1; possible=1) for: Wanted file "ohm.cpp"; Content pattern found: driver calls on resistance(); double\s+the_resistance\s*=\s*resistance\([^\)]*\);; The driver module should call on the resistance.asm module's resistance() function, and grab the return result to a 64-bit float. Name the variable the_resistance.
+[18:11:08][INFO] [RepoReport][submission] > Award from 2.0 to 3.0 (adjustment=1; possible=1) for: Wanted file "resistance.asm"; Content pattern found: Use get_resistance; (?s)section\s+\.text.+?extern\s+get_resistance.+?call\s+get_resistance; resistance.asm should utilize the external get_resistance function
+[18:11:08][INFO] [RepoReport][submission] > Award from 3.0 to 4.0 (adjustment=1; possible=1) for: Wanted file "resistance.asm"; Content pattern found: Use compute_resistance; (?s)section\s+\.text.+?extern\s+compute_resistance.+?call\s+compute_resistance; resistance.asm should utilize the external compute_resistance function
+[18:11:08][INFO] [RepoReport][submission] > Award from 4.0 to 5.0 (adjustment=1; possible=1) for: Wanted file "resistance.asm"; Content pattern found: Use show_resistance; (?s)section\s+\.text.+?extern\s+show_resistance.+?call\s+show_resistance; resistance.asm should utilize the external show_resistance function
+[18:11:08][INFO] [RepoReport][submission] > Award from 5.0 to 6.0 (adjustment=1; possible=1) for: Wanted file "resistance.asm"; Content pattern found: Make resistance available; (?m)^\s*global\s+resistance; The resistance module should make its resistance() function visible to other modules
+[18:11:08][INFO] [RepoReport][submission] > Award from 6.0 to 7.0 (adjustment=1; possible=1) for: Wanted file "resistance.asm"; Content pattern found: resistance() utilizing cpuid; (?s)(?m)section\s+\.text.+?^\s*cpuid; The resistance module should utilize the cpuid instruction
+[18:11:08][INFO] [RepoReport][submission] > Award from 7.0 to 8.0 (adjustment=1; possible=1) for: Wanted file "resistance.asm"; Content pattern found: resistance() convert int to a float; (?s)(?m)section\s+\.text.+?^\s*cvtsi2sd; The resistance module should be converting integers to floats
+[18:11:08][INFO] [RepoReport][submission] > Award from 8.0 to 9.0 (adjustment=1; possible=1) for: Wanted file "resistance.asm"; Content pattern found: resistance() grab tick count; (?s)(?m)section\s+\.text.+?^\s*rdtsc; The resistance module should grab the current CPU tick count
+[18:11:08][INFO] [RepoReport][submission] > Award from 9.0 to 10.0 (adjustment=1; possible=1) for: Wanted file "get_resistance.c"; Content pattern found: fgets and sscanf; (?s)fgets.+?sscanf; The get_sides module should use fgets and sscanf to receive user input
+[18:11:08][INFO] [RepoReport][submission] > Award from 10.0 to 11.0 (adjustment=1; possible=1) for: Wanted file "get_resistance.c"; Content pattern found: get_resistance signature; long\s+get_resistance\s*\(\s*double\s*\*\s*[a-zA-Z0-9_]+\s*,\s*double\s*\*\s*[a-zA-Z0-9_]+\s*,\s*double\s*\*\s*[a-zA-Z0-9_]+\s*,\s*double\s*\*\s*[a-zA-Z0-9_]+\s*\); The get_resistance function should have the following signature: long get_resistance(double*, double*, double*, double*);
+[18:11:08][INFO] [RepoReport][submission] > Award from 11.0 to 12.0 (adjustment=1; possible=1) for: Wanted file "compute_resistance.cpp"; Content pattern found: define and demangle compute_resistance; (?s)extern\s+"C"\s+{\s*double\s*compute_resistance\s*\(double[^,]+,\s*double[^,]+,\s*double[^,]+,\s*double; The compute_resistance module should define and demangle its C++ function compute_resistance, with the following signature: double compute_resistance(double r1, double r2, double r3, double r4, long delay_seconds);
+[18:11:08][INFO] [RepoReport][submission] > Award from 12.0 to 13.0 (adjustment=1; possible=1) for: Wanted file "show_resistance.cpp"; Content pattern found: Expose and demangle show_resistance; (?s)extern\s+"C"\s+{\s*void\s*show_resistance\s*\(double\s+[^,]+,\s*long\s+[^,]+,\s*double; The show_resistance module should expose and demangle its show_resistance function with the following signature: void show_resistance(double r, long ticks, double nanoSeconds);
+[18:11:08][INFO] [RepoReport][submission] > Award from 13.0 to 14.0 (adjustment=1; possible=1) for: Wanted file "show_resistance.cpp"; Content pattern found: show_results float precision (1); std::fixed; Use std::fixed and std::setprecision to ensure your floats print with 10 digits of precision after the decimal point
+[18:11:08][INFO] [RepoReport][submission] > Award from 14.0 to 15.0 (adjustment=1; possible=1) for: Wanted file "show_resistance.cpp"; Content pattern found: show_results float precision (2); std::setprecision\s*\([^\)]+\); Use std::fixed and std::setprecision to ensure your floats print with 10 digits of precision after the decimal point
+[18:11:08][INFO] [RepoReport][submission] README.md (read-me) ===> 10.0 of 10.0 (Raw: 6.0 of 6.0)
+[18:11:08][INFO] [RepoReport][submission] > Initialize to 0.0
+[18:11:08][INFO] [RepoReport][submission] > Award from 0.0 to 1.0 (adjustment=1; possible=1) for: Wanted file "README.md"; Content pattern found: Assignment title heading; (?m)(^|\n)# Programming Assignment - Parallel Circuit Resistance; Create a Markdown L1 heading with the title "Programming Assignment - Parallel Circuit Resistance"
+[18:11:08][INFO] [RepoReport][submission] > Award from 1.0 to 2.0 (adjustment=1; possible=1) for: Wanted file "README.md"; Content pattern found: "My Information" heading; (?m)(^|\n)# My Information; Create a Markdown L1 heading with the title "My Information"
+[18:11:08][INFO] [RepoReport][submission] > Award from 2.0 to 3.0 (adjustment=1; possible=1) for: Wanted file "README.md"; Content pattern found: Student name; \*\s+name\s*:\s*[^\s]+; Inside the "My Information" section, there should be a bullet with your name, like "name: YOUR NAME"
+[18:11:08][INFO] [RepoReport][submission] > Award from 3.0 to 4.0 (adjustment=1; possible=1) for: Wanted file "README.md"; Content pattern found: Student CWID; \*\s+CWID\s*:\s*[0-9\s]{5,15}; Inside the "My Information" section, there should be a bullet with your CWID, like "CWID: 1234567890"
+[18:11:08][INFO] [RepoReport][submission] > Award from 4.0 to 5.0 (adjustment=1; possible=1) for: Wanted file "README.md"; Content pattern found: Student email; \*\s+Email\s*:\s*.+?@.*?rccd\.edu; Inside the "My Information" section, there should be a bullet with your student email, like "Email: me@student.rccd.edu"
+[18:11:08][INFO] [RepoReport][submission] > Award from 5.0 to 6.0 (adjustment=1; possible=1) for: Wanted file: "README.md" was found
+[18:11:08][INFO] [RepoReport][submission] Normalizing final score to a max of 10.0; 21.0 / 44.0 became; 40.0 / 100.0 becomes 4.0 / 10.0
+[18:11:08][WARNING] [RepoReport][submission] Wanted file was not found: libPuhfessorP(\.v[0-9\.]+)?\.so
+[18:11:08][WARNING] [RepoReport][submission] Exit code will not earn any default points for key "run-program"
+[18:11:08][WARNING] [RepoReport][submission] No stdout detected!
+[18:11:08][WARNING] [RepoReport][submission] Detected stderr output !!!
+[18:11:08][WARNING] [RepoReport][submission] stderr: make: *** No rule to make target 'build'.  Stop.
+[18:11:08][INFO] (Thread #1) Found another repo with no authors (1 so far)
+[18:11:08][INFO] (Thread #1) Finished writing report for: submission
+[18:11:08][INFO] (Thread #1) No more reports left to write! :)
+[18:11:08][INFO] _write_individual_reports_thread() - End thread #1
+[18:11:08][INFO] Done joining threads
+[18:11:08][INFO] [SpreadsheetWriter] Begin creating Spreadsheet
+{'output': 21.0, 'read-me': 6.0, 'run-program': 2.0, 'source-code': 15.0}
+['Total Possible', '']
+[18:11:08][INFO] Writing Gradescope report file: /autograder/submission/grader-output/results.json
+[18:11:08][INFO] 
+[18:11:08][INFO] We seem to have finished successfully.
+Compile and run the program (0/10)
+Initialize to 0.0
+No award for: Execution "Compile program"; Your program needs to compile (possible=1)
+Program output (0/50)
+Initialize to 0.0
